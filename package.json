@@ -1,6 +1,6 @@
 {
   "name": "mc-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A foundation for scalable desktop apps",
   "keywords": [
     "electron",
@@ -13,27 +13,17 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
-  "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+    "url": "git+https://github.com/TheLifeIsYours/mc-app.git"
   },
   "license": "MIT",
+  "homepage": "https://mc.tliy.no",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "name": "TheLifeIsYours",
+    "email": "mc-app@tliy.no",
+    "url": "https://mc.tliy.no"
   },
-  "contributors": [
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    }
-  ],
   "main": "./src/main/main.ts",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",

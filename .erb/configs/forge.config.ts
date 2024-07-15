@@ -1,7 +1,7 @@
 module.exports = {
   publishers: [
     {
-      name: '@electron-forge/publisher-github',
+      name: '@electron-forge/thelifeisyours',
       config: {
         repository: {
           owner: 'thelifeisyours',
