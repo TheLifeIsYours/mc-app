@@ -61,7 +61,7 @@ export function McStatus({ className }: { className?: string }) {
   }
 
   return (
-    <main className="grid gap-2 min-h-full justify-items-center w-screen">
+    <main className="grid w-[400] h-[180px] gap-2 justify-items-center">
       <FrostedContainer className={`${className}`}>{content}</FrostedContainer>
     </main>
   );

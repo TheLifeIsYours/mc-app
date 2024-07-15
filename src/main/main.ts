@@ -39,8 +39,7 @@ if (process.env.NODE_ENV === 'production') {
   sourceMapSupport.install();
 }
 
-const isDebug =
-  process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
+const isDebug = false; //process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
   require('electron-debug')();
@@ -72,11 +71,22 @@ const createWindow = async () => {
     return path.join(RESOURCES_PATH, ...paths);
   };
 
+  tray = new Tray(getAssetPath('icon.png'));
+
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728,
+    frame: false,
+    resizable: false,
+    movable: false,
+    transparent: true,
+    roundedCorners: true,
+    hasShadow: true,
+    width: 400,
+    height: 200,
+    useContentSize: true,
+    alwaysOnTop: true,
     icon: getAssetPath('icon.png'),
+    skipTaskbar: true,
     webPreferences: {
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
@@ -84,10 +94,10 @@ const createWindow = async () => {
     },
   });
 
-  tray = new Tray(getAssetPath('icon.png'));
   mcTray = new McTray(tray, mainWindow);
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
+  
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
@@ -100,8 +110,35 @@ const createWindow = async () => {
     }
   });
 
+  mainWindow.on('show', async () => {
+    if (!tray || !mainWindow) return;
+
+    const trayBounds = tray.getBounds();
+    const windowBounds = mainWindow.getBounds();
+
+    //Update position
+    const finalBounds = {
+      x: trayBounds.x - windowBounds.width / 2 + trayBounds.width / 2,
+      y: trayBounds.y - windowBounds.height - 10,
+    };
+
+    mainWindow?.setPosition(finalBounds.x, finalBounds.y);
+  });
+
+  mainWindow.on('close', (e) => {
+    // e.preventDefault();
+    // mainWindow?.hide();
+  });
+
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  mcTray.on('quit', () => {
+    console.log('Quit event received', mainWindow, app);
+
+    mainWindow = null;
+    app.exit(0);
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);

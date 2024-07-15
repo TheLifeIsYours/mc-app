@@ -7,7 +7,7 @@ export default function FrostedContainer({
 }>) {
   return (
     <div
-      className={`${className} p-4 w-2/3 rounded-lg bg-opacity-50 bg-white backdrop-blur-md border-solid border-white border-opacity-50 border-2 `}
+      className={`${className} p-4 h-full w-full rounded-lg bg-opacity-75 bg-white backdrop-blur-md border-solid border-white border-opacity-50 border-2 `}
     >
       {children}
     </div>

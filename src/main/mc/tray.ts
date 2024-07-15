@@ -8,12 +8,14 @@ import {
 } from 'electron';
 import { McStatusUpdater } from './mc-status';
 import { imageUrlToNativeImage } from '../util';
+import EventEmitter from 'events';
 export class McTray {
   private tray: Tray;
   private contextMenu: Menu;
   private mcStatus: McStatusUpdater | undefined = undefined;
   private playersContextMenu: MenuItem | undefined = undefined;
   private trayWindow: BrowserWindow | undefined = undefined;
+  private emitter: EventEmitter = new EventEmitter();
 
   constructor(tray: Tray, trayWindow: BrowserWindow) {
     this.tray = tray;
@@ -53,7 +55,9 @@ export class McTray {
       {
         label: 'Quit',
         type: 'normal',
-        click: () => {},
+        click: () => {
+          this.emit('quit');
+        },
       },
     ]);
 
@@ -113,7 +117,9 @@ export class McTray {
       {
         label: 'Quit',
         type: 'normal',
-        click: () => {},
+        click: () => {
+          this.emit('quit');
+        },
       },
     ]);
 
@@ -123,5 +129,13 @@ export class McTray {
   private handleMcStatusUpdate(status: McStatus) {
     this.updateContextPlayers(status.players?.list || []);
     this.tray.setToolTip(`McTray | ${status.players?.online ?? 0} Players`);
+  }
+
+  public on(event: string, listener: (...args: any[]) => void) {
+    this.emitter.on(event, listener);
+  }
+
+  public emit(event: string, ...args: any[]) {
+    this.emitter.emit(event, ...args);
   }
 }
