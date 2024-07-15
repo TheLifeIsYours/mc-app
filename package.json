@@ -1,6 +1,6 @@
 {
   "name": "mc-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A foundation for scalable desktop apps",
   "keywords": [
     "electron",
@@ -250,5 +250,20 @@
       "src/main/**"
     ],
     "logLevel": "quiet"
+  },
+  "forge": {
+    "publishers": [
+      {
+        "name": "@electron-forge/publisher-github",
+        "config": {
+          "repository": {
+            "owner": "TheLifeIsYours",
+            "name": "mc-app"
+          },
+          "prerelease": false,
+          "draft": true
+        }
+      }
+    ]
   }
 }
