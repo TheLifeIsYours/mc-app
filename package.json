@@ -1,4 +1,5 @@
 {
+  "name": "mc-app",
   "description": "A foundation for scalable desktop apps",
   "keywords": [
     "electron",
