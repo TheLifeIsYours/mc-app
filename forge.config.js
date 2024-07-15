@@ -1,10 +1,8 @@
 module.exports = {
   publishers: [
     {
-      name: '@electron-forge/mc-app',
+      name: '@electron-forge/publisher-github',
       config: {
-        author: 'TheLifeIsYours',
-        description: 'Minecraft server status app',
         repository: {
           owner: 'TheLifeIsYours',
           name: 'mc-app',

@@ -16,6 +16,9 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { McTray } from './mc/tray';
 
+const { updateElectronApp } = require('update-electron-app');
+updateElectronApp();
+
 class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -97,7 +100,6 @@ const createWindow = async () => {
   mcTray = new McTray(tray, mainWindow);
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
-  
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
