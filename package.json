@@ -1,7 +1,7 @@
 {
   "name": "mc-app",
-  "version": "1.0.5",
-  "description": "A foundation for scalable desktop apps",
+  "version": "1.0.6",
+  "description": "Minecraft server status application",
   "keywords": [
     "electron",
     "boilerplate",
