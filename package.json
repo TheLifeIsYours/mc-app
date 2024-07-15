@@ -1,6 +1,6 @@
 {
   "name": "mc-app",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Minecraft server status application",
   "keywords": [
     "electron",
