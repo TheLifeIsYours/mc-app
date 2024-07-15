@@ -29,3 +29,4 @@ npm-debug.log.*
 *.scss.d.ts
 v8-compile-cache-0/*
 out/
+.env
